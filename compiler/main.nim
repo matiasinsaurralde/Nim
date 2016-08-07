@@ -13,7 +13,7 @@ import
   llstream, strutils, ast, astalgo, lexer, syntaxes, renderer, options, msgs,
   os, condsyms, rodread, rodwrite, times,
   wordrecg, sem, semdata, idents, passes, docgen, extccomp,
-  cgen, jsgen, json, nversion,
+  cgen, jsgen, gogen, json, nversion,
   platform, nimconf, importer, passaux, depends, vm, vmdef, types, idgen,
   docgen2, service, parser, modules, ccgutils, sigmatch, ropes, lists
 
@@ -117,6 +117,13 @@ proc commandCompileToJS =
 
 proc commandCompileToGo =
   echo "Compile to Go?"
+  setTarget(osGo, cpuGo)
+  defineSymbol("nimrod")
+  defineSymbol("ecmascript")
+  defineSymbol("js")
+  semanticPasses()
+  registerPass(GOgenPass)
+  compileProject()
 
 proc interactivePasses =
   #incl(gGlobalOptions, optSafeCode)

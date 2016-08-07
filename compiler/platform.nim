@@ -22,7 +22,7 @@ type
     osNone, osDos, osWindows, osOs2, osLinux, osMorphos, osSkyos, osSolaris,
     osIrix, osNetbsd, osFreebsd, osOpenbsd, osAix, osPalmos, osQnx, osAmiga,
     osAtari, osNetware, osMacos, osMacosx, osHaiku, osVxworks,
-    osJS, osNimrodVM, osStandalone
+    osJS, osGo, osNimrodVM, osStandalone
 
 type
   TInfoOSProp* = enum
@@ -146,6 +146,12 @@ const
       pathSep: ":", dirSep: "/",
       scriptExt: ".sh", curDir: ".",
       exeExt: "", extSep: ".", props: {}),
+     (name: "Go", parDir: "..",
+       dllFrmt: "lib$1.so", altDirSep: "/",
+       objExt: ".o", newLine: "\x0A",
+       pathSep: ":", dirSep: "/",
+       scriptExt: ".sh", curDir: ".",
+       exeExt: "", extSep: ".", props: {}),
      (name: "NimrodVM", parDir: "..", dllFrmt: "lib$1.so", altDirSep: "/",
       objExt: ".o", newLine: "\x0A", pathSep: ":", dirSep: "/",
       scriptExt: ".sh", curDir: ".", exeExt: "", extSep: ".", props: {}),
@@ -159,7 +165,7 @@ type
                      # alias conditionals to condsyms (end of module).
     cpuNone, cpuI386, cpuM68k, cpuAlpha, cpuPowerpc, cpuPowerpc64,
     cpuPowerpc64el, cpuSparc, cpuVm, cpuIa64, cpuAmd64, cpuMips, cpuMipsel,
-    cpuArm, cpuArm64, cpuJS, cpuNimrodVM, cpuAVR, cpuMSP430, cpuSparc64
+    cpuArm, cpuArm64, cpuJS, cpuGo, cpuNimrodVM, cpuAVR, cpuMSP430, cpuSparc64
 
 type
   TEndian* = enum
@@ -185,6 +191,7 @@ const
     (name: "arm", intSize: 32, endian: littleEndian, floatSize: 64, bit: 32),
     (name: "arm64", intSize: 64, endian: littleEndian, floatSize: 64, bit: 64),
     (name: "js", intSize: 32, endian: bigEndian,floatSize: 64,bit: 32),
+    (name: "go", intSize: 32, endian: bigEndian,floatSize: 64,bit: 32),
     (name: "nimrodvm", intSize: 32, endian: bigEndian, floatSize: 64, bit: 32),
     (name: "avr", intSize: 16, endian: littleEndian, floatSize: 32, bit: 16),
     (name: "msp430", intSize: 16, endian: littleEndian, floatSize: 32, bit: 16),
@@ -230,4 +237,3 @@ hostCPU = nameToCPU(system.hostCPU)
 hostOS = nameToOS(system.hostOS)
 
 setTarget(hostOS, hostCPU) # assume no cross-compiling
-
