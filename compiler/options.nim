@@ -75,7 +75,9 @@ type                          # please make sure we have under 32 options
     cmdNone, cmdCompileToC, cmdCompileToCpp, cmdCompileToOC,
     cmdCompileToJS,
     cmdCompileToPHP,
-    cmdCompileToLLVM, cmdInterpret, cmdPretty, cmdDoc,
+    cmdCompileToLLVM,
+    cmdCompileToGo,
+    cmdInterpret, cmdPretty, cmdDoc,
     cmdGenDepend, cmdDump,
     cmdCheck,                 # semantic checking for whole project
     cmdParse,                 # parse a single file (for debugging)

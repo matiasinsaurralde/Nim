@@ -115,6 +115,9 @@ proc commandCompileToJS =
   registerPass(JSgenPass)
   compileProject()
 
+proc commandCompileToGo =
+  echo "Compile to Go?"
+
 proc interactivePasses =
   #incl(gGlobalOptions, optSafeCode)
   #setTarget(osNimrodVM, cpuNimrodVM)
@@ -273,6 +276,9 @@ proc mainCommand* =
   of "php":
     gCmd = cmdCompileToPHP
     commandCompileToJS()
+  of "go":
+    gCmd = cmdCompiletoGo
+    commandCompileToGo()
   of "doc":
     wantMainModule()
     gCmd = cmdDoc
